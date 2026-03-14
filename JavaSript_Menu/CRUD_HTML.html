@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <header>
+        </header>
+        <main>
+            <!-- Ez lehet majd form tag is de most nem érdemes mert nincs adat küldés -->
+            <div>
+                <h3>Feltaláló Felvétele</h3>
+
+                <label for="InputName">Teljes néve</label><br>
+                <input type="text" id="InputName" name="Name" placeholder="Név"><br>
+
+                <label for="InputBorn">Születési Évszáma</label><br>
+                <input type="number" id="InputBorn" name="Born" placeholder="Évszám"><br>
+
+                <label for="InputDied">Halálozás Évszáma</label><br>
+                <input type="number" id="InputDied" name="Died" placeholder="Évszám"><br><br>
+
+                <button type="submit" id="Submit">Beküld</button>
+                <button type="reset" id="Reset">Visszavon</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Név</th>
+                        <th>Születési Dátum</th>
+                        <th>Halálozás dátuma</th>
+                    </tr>
+                </thead>
+                <tbody id="OutputElement"></tbody>
+            </table>
+        </main>
+    </body>
+</html>
+<script src="CRUD_functions.js"></script>
