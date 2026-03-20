@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <style>
+            body {
+                font-family: sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 20px;
+                background-color: #f9f9f9;
+            }
+
+            header, main, footer {
+                width: 100%;
+                max-width: 800px;
+                background: white;
+                padding: 20px;
+                margin-bottom: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                border-radius: 8px;
+                text-align: center;
+            }
+
+            header, footer {
+                text-align: center;
+            }
+
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+            th { background-color: #eee; }
+
+            .form-container { display: flex; flex-direction: column; gap: 10px; }
+            .form-group { display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+            
+            input[type="text"] { padding: 8px; flex: 1; min-width: 200px; }
+            input[type="number"] { padding: 8px; flex: 1; min-width: 200px; }
+            button { padding: 8px 15px; cursor: pointer; }
+        </style>
+
+    </head>
+    <body>
+        <header>
+            <h1>Web programozás-1 Előadás Házi feladat</h1>
+        </header>
+
+        <main>
+            <section class="form-container">
+                <h2 id="form-title">Új elem hozzáadása</h2>
+                <form id="crud-form">
+                    <input type="hidden" id="item-id">
+
+                    <label for="InputName">Teljes néve</label><br>
+                    <input type="text" id="InputName" name="Name" placeholder="Név"><br>
+                    <br>
+                    <label for="InputBorn">Születési Évszáma</label><br>
+                    <input type="number" id="InputBorn" name="Born" placeholder="Évszám"><br>
+                    <br>
+                    <label for="InputDied">Halálozás Évszáma</label><br>
+                    <input type="number" id="InputDied" name="Died" placeholder="Évszám"><br><br>
+                    <br>
+                    <button type="submit" id="Submit">Beküld</button>
+                    <button type="reset" id="Reset">Visszavon</button>
+
+                </form>
+            </section>
+
+            <section>
+                <br><br>
+                <h2>Feltalálók</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Név</th>
+                            <th>Születési év</th>
+                            <th>Halálozás éve</th>
+                            <th>Műveletek</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-table-body">
+                        <tr>
+                            <td>1</td>
+                            <td>Jedlik Ányos</td>
+                            <td>1800</td>
+                            <td>1895</td>
+                            <td class="actions">
+                                <button type="button" class="edit-btn">Szerkesztés</button>
+                                <button type="button" class="delete-btn">Törlés</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <br><br>
+
+        <footer>
+            <b>Debreczeni Ákos - HWF5W0 , Pálmai Ádám - YB5SIV<b>
+        </footer>
+
+    </body>
+</html>
