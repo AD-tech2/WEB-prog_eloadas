@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <link rel="stylesheet" href="kinezet.css">
     </head>
     <body>
         <header>
+            <h1>Web programozás-1 Előadás Házi feladat</h1>
         </header>
         <main>
             <!-- Ez lehet majd form tag is de most nem érdemes mert nincs adat küldés -->
@@ -13,13 +14,13 @@
 
                 <label for="InputName">Teljes néve</label><br>
                 <input type="text" id="InputName" name="Name" placeholder="Név"><br>
-
+                <br>
                 <label for="InputBorn">Születési Évszáma</label><br>
                 <input type="number" id="InputBorn" name="Born" placeholder="Évszám"><br>
-
+                <br>
                 <label for="InputDied">Halálozás Évszáma</label><br>
                 <input type="number" id="InputDied" name="Died" placeholder="Évszám"><br><br>
-
+                <br>
                 <button type="submit" id="Submit">Beküld</button>
                 <button type="reset" id="Reset">Visszavon</button>
             </div>
@@ -29,11 +30,15 @@
                         <th>Név</th>
                         <th>Születési Dátum</th>
                         <th>Halálozás dátuma</th>
+                        <th>Műveletek</th>
                     </tr>
                 </thead>
                 <tbody id="OutputElement"></tbody>
             </table>
         </main>
+        <footer>
+            <b>Debreczeni Ákos - HWF5W0 , Pálmai Ádám - YB5SIV<b>
+        </footer>
     </body>
 </html>
 <script src="CRUD_functions.js"></script>
