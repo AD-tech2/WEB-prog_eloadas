@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <h2>Fetch API - CRUD Application</h2>
-        <h3>Feltalálók tábla - felatlálók tábla</h3>
-        <!-- Alapból ne jelenjen meg semmi -->
-        <div id="ResponsArea"></div>
-        <form id="InputArea">
-            <label for="Name">A feltaláló teljes neve*</label> <br>
-            <input id="Name" name="Name" type="text" placeholder="Pl: Jóska Pista" required> <br>
 
-            <label for="Name">A feltaláló születési száma*</label> <br>
-            <input id="Born" name="Born" type="number" placeholder="Pl: 1995" required> <br>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
 
-            <label for="Name">A feltaláló halálozása</label> <br>
-            <input id="Died" name="Died" type="number" placeholder="Pl: 2025"> <br> <br>
+<body>
+    <h2>Fetch API - CRUD Application</h2>
+    <h3>Feltalálók tábla - felatlálók tábla</h3>
+    <!-- Alapból ne jelenjen meg semmi -->
+    <div id="ResponsArea"></div>
+    <form id="InputArea">
+        <label for="Name">A feltaláló teljes neve*</label>
+        <input id="Name" name="Name" type="text" ...>
 
-            <button id="SaveButton" type="submit">Save</button>
-            <button id="ResetButton" type="reset">Clear</button>
-        </form>
-        <table>
-            <thead>
-                <tr>
-                    <th>Telejes név</th>
-                    <th>Születési dátum</th>
-                    <th>Halálozi dátum</th>
-                    <th>Műveletek</th>
-                </tr>
-            </thead>
-            <!-- Ide jön majd a beolvasott adatok halmaza -->
-            <tbody id="OutputArea"></tbody>
-        </table>
-    </body>
+        <label for="Born">A feltaláló születési éve*</label>
+        <input id="Born" name="Born" type="number" ...>
+
+        <label for="Died">A feltaláló halálozási éve</label>
+        <input id="Died" name="Died" type="number" ...>
+
+        <button id="SaveButton" type="submit">Save</button>
+        <button id="ResetButton" type="reset">Clear</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Telejes név</th>
+                <th>Születési dátum</th>
+                <th>Halálozi dátum</th>
+                <th>Műveletek</th>
+            </tr>
+        </thead>
+        <!-- Ide jön majd a beolvasott adatok halmaza -->
+        <tbody id="OutputArea"></tbody>
+    </table>
+</body>
+
 </html>
 <script src="FetchAPI.js"></script>

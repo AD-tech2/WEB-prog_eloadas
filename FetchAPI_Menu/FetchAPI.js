@@ -168,12 +168,48 @@ function UpdateInventor(Id) {
 //Vezérlő gomb amivel interaktálunk a szerver fele:
 SaveButton.addEventListener("click", (e) => {
     e.preventDefault();
-    ResponsElement.style.display = "Block";
+    
+    // 1. Alapstílus beállítása (láthatóvá tétel)
+    ResponsElement.style.display = "block";
+    ResponsElement.style.padding = "15px";
+    ResponsElement.style.marginBottom = "20px";
+    ResponsElement.style.borderRadius = "5px";
+
+    // 2. Művelet elindítása
     if(SelectedInventor.isEdit)
         UpdateInventor(SelectedInventor.Id);
-    else CreateInventor(ReadUserInput());
-    //Input elemek nullázása:
+    else 
+        CreateInventor(ReadUserInput());
+
+    // 3. Egy kis "időzített bomba" a stílushoz:
+    // Megvárjuk, amíg a fetch beleírja az üzenetet, és aszerint színezzük
+    setTimeout(() => {
+        const text = ResponsElement.innerText.toLowerCase();
+        
+        if (text.includes("error") || text.includes("cannot")) {
+            // PIROS, ha hiba van
+            ResponsElement.style.backgroundColor = "#f8d7da";
+            ResponsElement.style.color = "#721c24";
+            ResponsElement.style.border = "1px solid #f5c6cb";
+        } else {
+            // ZÖLD, ha sikeres
+            ResponsElement.style.backgroundColor = "#d4edda";
+            ResponsElement.style.color = "#155724";
+            ResponsElement.style.border = "1px solid #c3e6cb";
+        }
+
+        // 4. Eltüntetés 3 másodperc múlva
+        setTimeout(() => {
+            ResponsElement.style.display = "none";
+            ResponsElement.innerHTML = "";
+        }, 3000);
+
+    }, 100); // 100ms várakozás, hogy a fetch válasza biztosan megérkezzen az innerHTML-be
+
+    // Input elemek nullázása:
     Object.entries(InputElements).forEach(([key, elem]) => elem.value = "");
+    SelectedInventor.Id = null;
+    SelectedInventor.isEdit = false;
 });
 
 
