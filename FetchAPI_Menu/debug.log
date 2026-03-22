@@ -1,0 +1,92 @@
+Kapott típus: DELETE
+DELETE: 1
+Kapott típus: GET
+DELETE: 88
+DELETE: 87
+PUT: Array
+(
+    [Id] => 86
+    [ToThis] => Array
+        (
+            [Name] => szia2
+            [Born] => 222
+            [Died] => 444
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 86
+    [ToThis] => Array
+        (
+            [Name] => szia2
+            [Born] => 222
+            [Died] => 444
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 86
+    [ToThis] => Array
+        (
+            [Name] => szia2
+            [Born] => 222
+            [Died] => 444
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 86
+    [ToThis] => Array
+        (
+            [Name] => szia2
+            [Born] => 222
+            [Died] => 444
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 84
+    [ToThis] => Array
+        (
+            [Name] => szia3
+            [Born] => 2222
+            [Died] => 3333
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 85
+    [ToThis] => Array
+        (
+            [Name] => szia12
+            [Born] => 2222
+            [Died] => 3333
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 84
+    [ToThis] => Array
+        (
+            [Name] => szia33
+            [Born] => 2222
+            [Died] => 3333
+        )
+
+)
+
+DELETE: 84
+DELETE: 85
+DELETE: 86
