@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import 'style.css';
+import './style.css'; // Itt csatoljuk be a CSS-t
 
-const API_URL = '[API végpont]'; 
+const API_URL = ''; 
 
 function App() {
   const [inventors, setInventors] = useState([]);
