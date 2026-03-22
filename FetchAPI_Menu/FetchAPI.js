@@ -6,6 +6,7 @@ const InputElements = {
 const OutputElement = document.getElementById("OutputArea");//= a tbody elemmel
 const ResponsElement = document.getElementById("ResponsArea");//= ide jönnek az üzenetek a fetch-ből!
 const SaveButton = document.getElementById("SaveButton");//form-nak a submit gombja
+const ResetButton = document.getElementById("ResetButton");
 const ServerApi = "HandleRequest.php";
 
 //================================== Fetch rendszer ========================================
@@ -32,21 +33,26 @@ function CreateCell(Data = null) {
     return NewCell;
 }
 
-function CreateButtonRef(Id = null, IsEditBt = false) {
-    if(Id === null || !Number.isInteger(Id))
+function CreateButtonRef(Record = null, IsEditBt = false) {
+    if(Record === null)
         throw new Error("Cannot create reffrence button without a refferenc (id).");
     const Button = document.createElement("button");
     if(IsEditBt) {
         Button.textContent = "Change";
-        Button.addEventListener("click", (Id) => {
-            SelectedInventor.Id = Id;
+        Button.addEventListener("click", () => {
+            SelectedInventor.Id = Record.fkod;
             SelectedInventor.isEdit = true;
+            //Adatok betöltése:
+            let index = 1;
+            RecordValueList = Object.entries(Record).map(([key, value]) => value);
+            Object.entries(InputElements).forEach(([key, elem]) => elem.value = RecordValueList[index++]);
         });
         return Button;
     }
     Button.textContent = "Delete";
-    Button.addEventListener("click", (Id) => {
-        SelectedInventor.Id = Id;
+    Button.addEventListener("click", () => {
+        DeleteInventor(Record.fkod);
+        SelectedInventor.Id = null;
         SelectedInventor.isEdit = false;
     });
     return Button;
@@ -61,8 +67,8 @@ function CreateRow(Record = null) {
         if(key !== "fkod") NewRow.appendChild(CreateCell(value));
     });
     const ButtonsCell = CreateCell(""); ButtonsCell.innerHTML = "";
-    ButtonsCell.appendChild(CreateButtonRef(Record.fkod), true);//= Update button
-    ButtonsCell.appendChild(CreateButtonRef(Record.fkod));//= Delete button
+    ButtonsCell.appendChild(CreateButtonRef(Record, true));//= Update button
+    ButtonsCell.appendChild(CreateButtonRef(Record));//= Delete button
     NewRow.appendChild(ButtonsCell);
     return NewRow;
 }
@@ -82,7 +88,10 @@ function ReadInventors() {
             ResponsElement.innerHTML = "<br>The inventors are succesfully loaded!";
         }
     })
-    .catch(Err => ResponsElement.innerHTML += "<br>Error: Cannot load the inventors!");
+    .catch(Err => {
+        ResponsElement.innerHTML += "<br>Error: Cannot load the inventors!";
+        console.log("Read: " + Err.message);
+    });
 }
 
 function CreateInventor(Record = {Name: "", Born: 0, Died: 0}) {
@@ -100,14 +109,18 @@ function CreateInventor(Record = {Name: "", Born: 0, Died: 0}) {
             ReadInventors();
         }
     })
-    .catch(Err => ResponsElement.innerHTML = "Error: Cannot save the new inventor!");
+    .catch(Err => {
+        ResponsElement.innerHTML = "Error: Cannot save the new inventor!";
+        console.log("Create: " + Err.message);
+    });
 }
 
 function DeleteInventor(Id) {
     if(!confirm("Are you sure you want to delete this inventor?")) return;
+    console.log(Id);
     fetch(ServerApi, {
         method: "DELETE",
-        headers: {"Content-Type:": "application/json"},
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(Id)
     })
     .then(Resp => Resp.json())
@@ -119,7 +132,10 @@ function DeleteInventor(Id) {
             ReadInventors();
         }
     })
-    .catch(Err => ResponsElement.innerHTML = "Error: Cannot delete the selected inventor!");
+    .catch(Err => {
+        ResponsElement.innerHTML = "Error: Cannot delete the selected inventor!";
+        console.log("Delete: " + Err.message);
+    });
 }
 
 function UpdateInventor(Id) {
@@ -130,7 +146,7 @@ function UpdateInventor(Id) {
     };
     fetch(ServerApi, {
         method: "PUT",
-        headers: {"Content-Type:": "application/json"},
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(UpdateToThis)
     })
     .then(Resp => Resp.json())
@@ -142,18 +158,28 @@ function UpdateInventor(Id) {
             ReadInventors();
         }
     })
-    .catch(Err => ResponsElement.innerHTML = "Error: Cannot update the selected inventor!");
+    .catch(Err => {
+        ResponsElement.innerHTML = "Error: Cannot update the selected inventor!";
+        console.log("Update: " + Err.message);
+    });
 }
 
 
 //Vezérlő gomb amivel interaktálunk a szerver fele:
-SaveButton.addEventListener("submit", (e) => {
+SaveButton.addEventListener("click", (e) => {
     e.preventDefault();
+    ResponsElement.style.display = "Block";
     if(SelectedInventor.isEdit)
         UpdateInventor(SelectedInventor.Id);
-    else DeleteInventor(SelectedInventor.Id);
+    else CreateInventor(ReadUserInput());
     //Input elemek nullázása:
-    Object.entries(InputElements).forEach(elem => elem.value = "");
+    Object.entries(InputElements).forEach(([key, elem]) => elem.value = "");
 });
 
-document.addEventListener("DOMContentLoaded", () => {ReadInventors(); console.log("lefutott");});
+
+ResetButton.addEventListener("reset", () => {
+    SelectedInventor.Id = null;
+    SelectedInventor.isEdit = false;
+});
+
+document.addEventListener("DOMContentLoaded", ReadInventors);
