@@ -1,32 +1,44 @@
-import { ReadInventors, ReadUserInput } from "./ReadStream";
 import axios from "axios";
 
-export async function CreateInventor(Handler) {
+export async function CreateInventor(Handler = null, NewRecord) {
     if(Handler === "" || Handler === null)
         throw new Error("There is no given handler!")
-    if(RecordData === null)
+    if(NewRecord === null)
         throw new Error("Cannot create an empty record!");
     try {
-        const Flag = await axios.post(Handler, ReadUserInput());
-        return Flag.data.Fail;
+        const Payload = await axios.post(Handler, {
+            Record: NewRecord
+        });
+        return Payload.data.Fail;
     } catch(Err) {
         console.log("Update: Unable to update data on the server!")
         return false;
     }
 }
-//Be kell fejezni a maradékot!
-export async function UpdateInventor(Handler) {
-    try {
 
+export async function UpdateInventor(Handler = null, Id = null, UpdatedRecord) {
+    if(Handler === "" || Handler === null || Id === null)
+        throw new Error("Incorrect parameters, there should be a valid handler and a Id given!");
+    try {
+        const Payload = await axios.put(Handler, {
+            Id: Id,
+            ToThis: UpdatedRecord
+        });
+        return Payload.data.Fail;
     } catch(Err) {
-        console.log("Update: Unable to update data on the server!")
+        console.log("Update: Unable to update data on the server!");
+        return false;
     }
 }
 
-export async function DeleteInventor(Handler, Id) {
+export async function DeleteInventor(Handler = null, Id = null) {
+    if(Handler === "" || Handler === null || Id === null)
+        throw new Error("Incorrect parameters, there should be a valid handler and a Id given!");
     try {
-
+        const Payload = await axios.delete(Handler, {data: { Id: Id }});
+        return Payload.data.Fail;
     } catch(Err) {
-        console.log("Delete: Unable to update data on the server!")
+        console.log("Delete: Unable to update data on the server!");
+        return false;
     }
 }

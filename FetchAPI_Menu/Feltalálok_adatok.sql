@@ -12,8 +12,8 @@ CREATE TABLE kutato(fkod int(11) PRIMARY KEY AUTO_INCREMENT,
                    );
 CREATE TABLE kapcsol(tkod int(11) NOT NULL,
                      fkod int(11) NOT NULL,
-                     FOREIGN KEY(tkod) REFERENCES talalmany(tkod),
-                     FOREIGN KEY(fkod) REFERENCES kutato(fkod)
+                     FOREIGN KEY(tkod) REFERENCES talalmany(tkod) ON DELETE CASCADE,
+                     FOREIGN KEY(fkod) REFERENCES kutato(fkod) ON DELETE CASCADE
                       );
 -- Találmányok tábla:
 INSERT INTO talalmany(tkod,talnev) VALUES (78, 'mikrobarázdás hanglemez');

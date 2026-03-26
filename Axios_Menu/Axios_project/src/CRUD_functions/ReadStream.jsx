@@ -1,15 +1,17 @@
 import axios from "axios"
 
-export function ReadUserInput(Referencies = {name: null, born: null, died: null}) {
-    let RecordData = OutputFormat;
-    Object.entries(References).map(([RefName, RefValue]) => {
+//Arra jó ha megadjuk a referenciát akkor készít egy PHP-nek mefelelő JSON formátumú listát:
+export function ReadUserInput(Referencies) {
+    let RecordData = {Name: null, Born: null, Died: null};
+    Object.entries(Referencies).map(([RefName, RefValue]) => {
         RecordData[RefName] = RefValue.current.value;
     });
-    return ValueList;
+    return RecordData;
 }
 
+//Olvasási kérelem a PHP fele
 export async function ReadInventors(Handler) {
-    if(DatabaseHandler === null || DatabaseHandler === "")
+    if(Handler === null || Handler === "")
         throw new Error("There is no given handler!");
     try {
         const Payload = await axios.get(Handler);
