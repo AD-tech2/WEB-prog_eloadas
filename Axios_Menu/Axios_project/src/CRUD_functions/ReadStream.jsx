@@ -4,7 +4,9 @@ import axios from "axios"
 export function ReadUserInput(Referencies) {
     let RecordData = {Name: null, Born: null, Died: null};
     Object.entries(Referencies).map(([RefName, RefValue]) => {
-        RecordData[RefName] = RefValue.current.value;
+        if(RefValue.current.value === null || RefValue.current.value === "")
+            RecordData[RefName] = null;
+        else RecordData[RefName] = RefValue.current.value;
     });
     return RecordData;
 }

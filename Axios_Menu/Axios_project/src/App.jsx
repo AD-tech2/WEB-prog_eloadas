@@ -12,6 +12,11 @@ function App() {
     Born: useRef(null),
     Died: useRef(null)
   };
+  //Adatok egy ref-ben:
+  const RecordList = useRef([]);
+  const GetRecordList = () => RecordList.current;
+  const SetRecordList = (NewRecords) => { RecordList.current = NewRecords; }
+
   //Update esemény flagek:
   const UpdateFlag = useRef({
     IsUpdate: false,
@@ -23,11 +28,6 @@ function App() {
   }
   const GetUpdateFlag = () => { return UpdateFlag.current; }
 
-  //Ref amibe töltünk render nélkül hogy legyen idő betölteni az adatotkat:
-  const RecordList = useRef([]);
-  const GetRecords = () => { return RecordList.current; }
-  const SetRecords = (RecList) => { RecordList.current = RecList; }
-
   //Az error állításával triggerel a render:
   const [Error, SetError] = useState({
     Flag: false,
@@ -37,14 +37,26 @@ function App() {
   //Kezelő metódusok:
   const LoadRecords = async () => {
     const Data = await ReadInventors("http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php");
+<<<<<<< HEAD
     if (Data.Fail) {
+=======
+    if(Data === null || Data.Fail) {
+>>>>>>> 0d0495ce49ab50e151b08a87a68ffb688d03f9c3
       SetError({
         Flag: true,
         Message: "Unable to load in the inventors!"
       });
       return;
     }
-    SetRecords(Data.Records);
+    if(Data.Records === null || Data.Records.length === 0) {
+      SetError({
+        Flag: true,
+        Message: "Unable to load in the inventors!"
+      });
+      LoadWrapper();//Üres listát ad szóval semmit nem tölt be lokálisan.
+      return;
+    }
+    SetRecordList(Data.Records);//Ideiglenes tárolás
     SetError({
       Flag: false,
       Message: ""
@@ -54,8 +66,12 @@ function App() {
   //================================================ CRUD implementációk erre a táblára ===========================================
   const CreateRecord = async (Handler, NewRecord) => {
     const Data = await CreateInventor(Handler, NewRecord);
+<<<<<<< HEAD
     console.log(Data);
     if (Data.Fail) {
+=======
+    if(Data === null || Data.Fail) {
+>>>>>>> 0d0495ce49ab50e151b08a87a68ffb688d03f9c3
       SetError({
         Flag: true,
         Message: "Unable to create a new inventor!"
@@ -71,7 +87,11 @@ function App() {
 
   const DeleteRecord = async (Handler, Id) => {
     const Data = await DeleteInventor(Handler, Id);
+<<<<<<< HEAD
     if (Data.Fail) {
+=======
+    if(Data === null || Data.Fail) {
+>>>>>>> 0d0495ce49ab50e151b08a87a68ffb688d03f9c3
       SetError({
         Flag: true,
         Message: "Unable to delete the selected inventor!"
@@ -87,7 +107,11 @@ function App() {
 
   const UpdateRecord = async (Handler, Id, NewRecord) => {
     const Data = await UpdateInventor(Handler, Id, NewRecord);
+<<<<<<< HEAD
     if (Data.Fail) {
+=======
+    if(Data === null || Data.Fail) {
+>>>>>>> 0d0495ce49ab50e151b08a87a68ffb688d03f9c3
       SetError({
         Flag: true,
         Message: "Unable to update the selected inventor!"
@@ -121,6 +145,11 @@ function App() {
   //Default load esemény:
   useEffect(() => LoadRecords, []);
 
+  useEffect(() => {
+    if(!Error.Flag)//Ha sikeres a betöltés ürítjük a memóriát!
+      SetRecordList([]);
+  }, [Error]);
+
   //"http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php" nálam ez volt a szerver php kezelő program címe, ha nálad nem akkor EDITELD!!!!
   return (
     <div className="main-container"> {/* <--- Ez az új tároló div */}
@@ -130,6 +159,7 @@ function App() {
           {Error.Message}
         </h3>
       }
+<<<<<<< HEAD
       <div className="form-card"> {/* <--- Ez fogja össze a formot a CSS-ben */}
         <FormElement ListOfInputConfs={[
           { label: "Név*", type: "text", holder: "Pl.: Jóska Pista", ref: InputRefs.Name },
@@ -160,6 +190,27 @@ function App() {
         }
       </div>
     </div>
+=======
+      <FormElement
+        ListOfInputConfs={[
+          {label: "Név*", type: "text", holder: "Pl.: Jóska Pista", ref: InputRefs.Name, notnull: true},
+          {label: "Életkor*", type: "number", holder: "Pl.: 1995", ref: InputRefs.Born, notnull: true},
+          {label: "Halálozás", type: "number", holder: "Pl.: 2020", ref: InputRefs.Died}
+        ]}
+        OnSave={HandleSave}
+      />
+      <TableElement
+        ColumnNames={["Név", "Születés", "Halálozás", "Műveletek"]}
+        Records={GetRecordList()}
+        HandlerCollection={{
+          Handler: "http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php",
+          Refs: InputRefs,
+          Delete: DeleteRecord,
+          Update: SetUpdateFlag
+        }}
+        />
+    </>
+>>>>>>> 0d0495ce49ab50e151b08a87a68ffb688d03f9c3
   )
 }
 

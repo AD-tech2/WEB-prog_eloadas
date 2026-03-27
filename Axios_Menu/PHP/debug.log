@@ -1,0 +1,338 @@
+
+
+PUT: Array
+(
+    [Record] => Array
+        (
+            [Name] => szia
+            [Born] => 434
+            [Died] => 4242
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => szia
+            [Born] => 5442
+            [Died] => 423423
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => szia
+            [Born] => 222
+            [Died] => 434423
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => Ajtay Zoltán Endre
+            [Born] => 1901
+            [Died] => 1983
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 1
+    [UpdateToThis] => Array
+        (
+            [Name] => Ajtay Zoltán Endre
+            [Born] => 1902
+            [Died] => 1983
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 1
+    [ToThis] => Array
+        (
+            [Name] => valaki
+            [Born] => 212
+            [Died] => 4234
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 1
+    [ToThis] => Array
+        (
+            [Name] => valaki3
+            [Born] => 212
+            [Died] => 4234
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 1
+    [ToThis] => Array
+        (
+            [Name] => valaki2
+            [Born] => 212
+            [Died] => 4234
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 1
+    [ToThis] => Array
+        (
+            [Name] => valaki22
+            [Born] => 212
+            [Died] => 4234
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 1
+    [ToThis] => Array
+        (
+            [Name] => valaki21
+            [Born] => 212
+            [Died] => 4234
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 1
+    [ToThis] => Array
+        (
+            [Name] => valaki11
+            [Born] => 212
+            [Died] => 4234
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 1
+    [ToThis] => Array
+        (
+            [Name] => valaki11
+            [Born] => 2124
+            [Died] => 4234
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 1
+    [ToThis] => Array
+        (
+            [Name] => valaki11
+            [Born] => 212
+            [Died] => 4234
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 1
+    [ToThis] => Array
+        (
+            [Name] => valaki11
+            [Born] => 21
+            [Died] => 4234
+        )
+
+)
+
+DELETE: 9
+DELETE: 1
+PUT: Array
+(
+    [Id] => 81
+    [ToThis] => Array
+        (
+            [Name] => Koszna János
+            [Born] => 1999
+            [Died] => 2024
+        )
+
+)
+
+PUT: Array
+(
+    [Id] => 81
+    [ToThis] => Array
+        (
+            [Name] => Koszna János
+            [Born] => 1999
+            [Died] => 
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => 
+            [Born] => 
+            [Died] => 222
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => 
+            [Born] => 
+            [Died] => 
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => 
+            [Born] => 
+            [Died] => 
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => Jóska Pista
+            [Born] => 3423
+            [Died] => 4233
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => Szomszéd Jani
+            [Born] => 2101
+            [Died] => 4243
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => 
+            [Born] => 
+            [Died] => 
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => 
+            [Born] => 
+            [Died] => 
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => 
+            [Born] => 
+            [Died] => 
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => 
+            [Born] => 
+            [Died] => 
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => 
+            [Born] => 
+            [Died] => 
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => MásiSzomszéd Jani
+            [Born] => 
+            [Died] => 
+        )
+
+)
+
+POST: Array
+(
+    [Record] => Array
+        (
+            [Name] => Másik Jani
+            [Born] => 2200
+            [Died] => 
+        )
+
+)
+
+DELETE: 85
+DELETE: 10
+PUT: Array
+(
+    [Id] => 11
+    [ToThis] => Array
+        (
+            [Name] => Budó Ágoston
+            [Born] => 1913
+            [Died] => 
+        )
+
+)
+
