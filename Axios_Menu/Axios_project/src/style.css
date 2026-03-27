@@ -12,7 +12,7 @@ body {
 /* A fő tároló, ami összefogja a tartalmat */
 #root, .App {
   width: 90%;
-  max-width: 600px;
+  max-width: 700px;
   margin-top: 50px;
   padding: 20px;
 }
@@ -131,12 +131,12 @@ table button {
 }
 
 /* Törlés gomb (piros), Szerkesztés gomb (sárga) */
-table tr td:last-child button:nth-child(1) { 
+table tr td:last-child button:nth-child(2) { 
   background-color: #e74c3c; 
   color: white; 
 } 
 
-table tr td:last-child button:nth-child(2) { 
+table tr td:last-child button:nth-child(1) { 
   background-color: #f1c40f; 
   color: white; 
 }

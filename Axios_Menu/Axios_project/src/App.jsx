@@ -44,7 +44,7 @@ function App() {
       });
       return;
     }
-    if(Data.Records === null || Data.Records.length === 0) {
+    if(Data.Records === null) {
       SetError({
         Flag: true,
         Message: "Unable to load in the inventors!"
@@ -137,14 +137,14 @@ function App() {
   return (
     <>
       <h1>React + PHP CRUD alkalmazás</h1>
-      { Error &&
+      { Error.Flag &&
         <h3>
           {Error.Message}
         </h3>
       }
       <FormElement
         ListOfInputConfs={[
-          {label: "Név*", type: "text", holder: "Pl.: Jóska Pista", ref: InputRefs.Name, notnull: true},
+          {label: "Név*", type: "text", holder: "Pl.: Makai Andor", ref: InputRefs.Name, notnull: true},
           {label: "Életkor*", type: "number", holder: "Pl.: 1995", ref: InputRefs.Born, notnull: true},
           {label: "Halálozás", type: "number", holder: "Pl.: 2020", ref: InputRefs.Died}
         ]}
