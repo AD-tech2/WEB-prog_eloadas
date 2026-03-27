@@ -1,3 +1,4 @@
+/* Alapbeállítások a teljes oldalra */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -8,9 +9,10 @@ body {
   min-height: 100vh;
 }
 
-.main-container {
+/* A fő tároló, ami összefogja a tartalmat */
+#root, .App {
   width: 90%;
-  max-width: 900px;
+  max-width: 600px;
   margin-top: 50px;
   padding: 20px;
 }
@@ -21,18 +23,20 @@ h1 {
   margin-bottom: 30px;
 }
 
-/* Hibaüzenet stílusa */
-.error-msg {
+/* Hibaüzenet stílusa (a h3-ra illesztve, ahogy a kódban van) */
+h3 {
   background-color: #ffeded;
   color: #d93025;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #d93025;
   text-align: center;
+  font-size: 16px;
+  font-weight: normal;
 }
 
-/* Form kártya */
-.form-card {
+/* A FormElement belső konténere (Form kártya) */
+form, .form-container {
   background: white;
   padding: 25px;
   border-radius: 12px;
@@ -40,7 +44,7 @@ h1 {
   margin-bottom: 40px;
 }
 
-/* Inputok stílusozása (a FormElement-en belül) */
+/* Inputok stílusozása */
 input {
   width: 100%;
   padding: 12px;
@@ -62,10 +66,17 @@ input:focus {
 label {
   font-weight: bold;
   color: #555;
+  display: block;
 }
 
-/* Mentés gomb */
-.save-btn {
+/* Mentés gomb - a FormElement-en belüli gombra vagy a HandleSave-hez tartozóra */
+button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* A fő mentés gomb kiemelt stílusa */
+button:not(table button) {
   width: 100%;
   background-color: #2ecc71;
   color: white;
@@ -73,13 +84,11 @@ label {
   margin: 8px 0;
   border: none;
   border-radius: 6px;
-  cursor: pointer;
   font-size: 18px;
   font-weight: bold;
-  transition: background 0.3s ease;
 }
 
-.save-btn:hover {
+button:not(table button):hover {
   background-color: #27ae60;
 }
 
@@ -89,8 +98,9 @@ table {
   background: white;
   border-collapse: collapse;
   border-radius: 12px;
-  overflow: hidden; /* Lekerekített sarkok miatt */
+  overflow: hidden;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-top: 20px;
 }
 
 th {
@@ -117,13 +127,19 @@ table button {
   margin-right: 5px;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
   font-size: 14px;
 }
 
-/* Törlés gomb piros, Szerkesztés sárga/kék */
-table button:nth-child(1) { background-color: #e74c3c; color: white; } /* Delete */
-table button:nth-child(2) { background-color: #f1c40f; color: white; } /* Update */
+/* Törlés gomb (piros), Szerkesztés gomb (sárga) */
+table tr td:last-child button:nth-child(1) { 
+  background-color: #e74c3c; 
+  color: white; 
+} 
+
+table tr td:last-child button:nth-child(2) { 
+  background-color: #f1c40f; 
+  color: white; 
+}
 
 table button:hover {
   opacity: 0.8;

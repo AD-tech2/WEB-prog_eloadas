@@ -3,6 +3,7 @@ import FormElement from "./Components/FormInput"
 import TableElement from "./Components/TableOutput"
 import { ReadInventors, ReadUserInput } from "./CRUD_functions/ReadStream";
 import { DeleteInventor, UpdateInventor, CreateInventor } from "./CRUD_functions/ManipStream";
+import './style.css';
 
 function App() {
   //Összesen van 3 input elem (Név, Születés, Halálozás) = 3 db referencia:
