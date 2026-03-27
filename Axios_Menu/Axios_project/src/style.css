@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.main-container {
+  width: 90%;
+  max-width: 900px;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+/* Hibaüzenet stílusa */
+.error-msg {
+  background-color: #ffeded;
+  color: #d93025;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #d93025;
+  text-align: center;
+}
+
+/* Form kártya */
+.form-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-bottom: 40px;
+}
+
+/* Inputok stílusozása (a FormElement-en belül) */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 20px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border 0.3s;
+}
+
+input:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Mentés gomb */
+.save-btn {
+  width: 100%;
+  background-color: #2ecc71;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.save-btn:hover {
+  background-color: #27ae60;
+}
+
+/* Táblázat stílusa */
+table {
+  width: 100%;
+  background: white;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden; /* Lekerekített sarkok miatt */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+th {
+  background-color: #34495e;
+  color: white;
+  text-align: left;
+  padding: 15px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Műveletek gombok a táblázatban */
+table button {
+  padding: 8px 12px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Törlés gomb piros, Szerkesztés sárga/kék */
+table button:nth-child(1) { background-color: #e74c3c; color: white; } /* Delete */
+table button:nth-child(2) { background-color: #f1c40f; color: white; } /* Update */
+
+table button:hover {
+  opacity: 0.8;
+}
