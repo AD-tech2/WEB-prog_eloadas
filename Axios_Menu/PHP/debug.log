@@ -1,38 +1,66 @@
-GET: 
-GET: 
-GET: 
-GET: 
-POST: Array
-(
-    [Record] => Array
-        (
-            [Name] => Makai Andor
-            [Born] => 1920
-            [Died] => 2026
-        )
 
+Natural GET
+SpecGET: Array
+(
+    [Column] => nev
+    [Value] => Makai
 )
 
-POST: Array
+Natural GET
+SpecGET: Array
 (
-    [Record] => Array
-        (
-            [Name] => Koszna Ferenc
-            [Born] => 1980
-            [Died] => 
-        )
-
+    [Column] => nev
+    [Value] => Makai
 )
 
-PUT: Array
+Natural GET
+SpecGET: Array
 (
-    [Id] => 89
-    [ToThis] => Array
-        (
-            [Name] => Koszna Ferenc
-            [Born] => 1985
-            [Died] => 
-        )
-
+    [Column] => nev
+    [Value] => Makai
 )
 
+Natural GET
+SpecGET: Array
+(
+    [Column] => nev
+    [Value] => Makai
+)
+
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE ?
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+Natural GET
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Andor
+SpecGET: SELECT * FROM kutato WHERE nev LIKE a
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Koszna
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Cili
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE halálozási dátum LIKE 1932
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Andor
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE nev
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+SpecGET: SELECT * FROM kutato WHERE nev LIKE 1900
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+SpecGET: SELECT * FROM kutato WHERE nev LIKE 1900
+SpecGET: SELECT * FROM kutato WHERE születési dátum LIKE 1900
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
