@@ -95,7 +95,7 @@
                     echo json_encode([
                         "Fail" => true
                     ]);
-                    file_put_contents(__DIR__."/error.log", "SpecGET: ".$e->getMessage()."\n", FILE_APPEND);
+                    //file_put_contents(__DIR__."/error.log", "SpecGET: ".$e->getMessage()."\n", FILE_APPEND);
                 }
             }
             else {
@@ -104,7 +104,7 @@
                         "Fail" => false,
                         "Records" => ReadInventors()
                     ]);
-                    file_put_contents(__DIR__."/debug.log", "Natural GET\n", FILE_APPEND);
+                    //file_put_contents(__DIR__."/debug.log", "Natural GET\n", FILE_APPEND);
                 } catch(Exception $e) {
                     echo json_encode([
                         "Fail" => true
@@ -159,6 +159,7 @@
             echo json_encode([
                 "Fail" => true
             ]);
+            file_put_contents(__DIR__."/error.log", "Unknown request:\n", FILE_APPEND);
             break;
     }
 ?>
