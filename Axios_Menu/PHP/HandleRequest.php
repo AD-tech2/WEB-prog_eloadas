@@ -8,10 +8,14 @@
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     require "Connect.php";
 
-    function ReadInventors() {
+    function ReadInventors($Specific) {
         global $DatabaseAPI;
-        $SQLstmnt = $DatabaseAPI->query("SELECT * FROM kutato");
-        return $SQLstmnt->fetchAll();
+        if(!isset($Specific) || $Specific === null) {
+            $SQLstmnt = $DatabaseAPI->query("SELECT * FROM kutato");
+            return $SQLstmnt->fetchAll();
+        }
+        $SQLstmnt = $DatabaseAPI->prepare("SELECT * FROM kutato WHERE ? = \"?\"");
+        return $SQLstmnt->execute([$Specific["Column"], $Specific["Value"]])->fetchAll();
     }
 
     function CreateInventor($NewInventor) {

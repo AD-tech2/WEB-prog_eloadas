@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import FormElement from "./Components/FormInput"
 import TableElement from "./Components/TableOutput"
-import { ReadInventors, ReadUserInput } from "./CRUD_functions/ReadStream";
+import { ReadInventors, ReadSpecificInventor, ReadUserInput } from "./CRUD_functions/ReadStream";
 import { DeleteInventor, UpdateInventor, CreateInventor } from "./CRUD_functions/ManipStream";
+import SearchBar from "./Components/SearchBar";
 import './style.css';
 
 function App() {
@@ -18,15 +19,10 @@ function App() {
   const SetRecordList = (NewRecords) => { RecordList.current = NewRecords; }
 
   //Update esemény flagek:
-  const UpdateFlag = useRef({
+  const [UpdateFlag, SetUpdateFlag] = useState({
     IsUpdate: false,
     Id: null
   });
-  const SetUpdateFlag = (NewConfig = {IsUpdate: null, Id: null}) => {
-    UpdateFlag.current.IsUpdate = NewConfig.IsUpdate;
-    UpdateFlag.current.Id = NewConfig.Id;
-  }
-  const GetUpdateFlag = () => { return UpdateFlag.current; }
 
   //Az error állításával triggerel a render:
   const [Error, SetError] = useState({
@@ -49,7 +45,7 @@ function App() {
         Flag: true,
         Message: "Unable to load in the inventors!"
       });
-      LoadWrapper();//Üres listát ad szóval semmit nem tölt be lokálisan.
+      SetRecordList([]);//Üres listát ad szóval semmit nem tölt be lokálisan.
       return;
     }
     SetRecordList(Data.Records);//Ideiglenes tárolás
@@ -57,7 +53,38 @@ function App() {
       Flag: false,
       Message: ""
     });
-  };
+  }
+
+  const LoadSpecRecords = async (Specification = { Column: null, Value: null}) => {
+    if(Specification === null || Specification.Column === null || Specification.Column === "" || Specification.Value === "" || Specification.Value === null) {
+      SetError({
+        Flag: true,
+        Message: "Cannot load a not specifyed data!"
+      });
+      return;
+    }
+    const Data = await ReadSpecificInventor("http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php", Specification);
+    if(Data === null || Data.Fail) {
+      SetError({
+        Flag: true,
+        Message: "Unable to load in the inventors!"
+      });
+      return;
+    }
+    if(Data.Records === null) {
+      SetError({
+        Flag: true,
+        Message: "Unable to load in the inventors!"
+      });
+      SetRecordList([]);//Üres listát ad szóval semmit nem tölt be lokálisan.
+      return;
+    }
+    SetRecordList(Data.Records);//Ideiglenes tárolás
+    SetError({
+      Flag: false,
+      Message: ""
+    });
+  }
 
   //================================================ CRUD implementációk erre a táblára ===========================================
   const CreateRecord = async (Handler, NewRecord) => {
@@ -112,8 +139,8 @@ function App() {
   //Interaktáló gomb esememény kezelője:
   const HandleSave = () => {
     //Ha update esemény van jelen akkor kerül ide a vezérlés:
-    if(GetUpdateFlag().IsUpdate) {
-      UpdateRecord("http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php", GetUpdateFlag().Id, ReadUserInput(InputRefs));
+    if(UpdateFlag.IsUpdate) {
+      UpdateRecord("http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php", UpdateFlag.Id, ReadUserInput(InputRefs));
       SetUpdateFlag({
         IsUpdate: false,
         Id: null
@@ -125,8 +152,16 @@ function App() {
     Object.entries(InputRefs).map(([key, inputs]) => { inputs.current.value = ""; });
   }
 
-  //Default load esemény:
-  useEffect(() => LoadRecords, []);
+  const HandleReset = () => {
+    Object.entries(InputRefs).map(([key, inputs]) => inputs.current.value = "");//ref-ek ürítése
+    SetUpdateFlag({
+      IsUpdate: false,
+      Id: null
+    });
+  }
+
+  //Default load események:
+  useEffect(() => LoadRecords, [UpdateFlag]);
 
   useEffect(() => {
     if(!Error.Flag)//Ha sikeres a betöltés ürítjük a memóriát!
@@ -142,13 +177,23 @@ function App() {
           {Error.Message}
         </h3>
       }
+      <SearchBar
+        Label="SearchBar"
+        OptionsToSearch={["nev", "születési dátum", "halálozási dátum"]}
+        OnSearch={LoadSpecRecords}
+        OnNullSearch={LoadRecords}
+      />
       <FormElement
         ListOfInputConfs={[
           {label: "Név*", type: "text", holder: "Pl.: Makai Andor", ref: InputRefs.Name, notnull: true},
-          {label: "Életkor*", type: "number", holder: "Pl.: 1995", ref: InputRefs.Born, notnull: true},
+          {label: "Születés*", type: "number", holder: "Pl.: 1995", ref: InputRefs.Born, notnull: true},
           {label: "Halálozás", type: "number", holder: "Pl.: 2020", ref: InputRefs.Died}
         ]}
         OnSave={HandleSave}
+        OnReset={{
+          Available: UpdateFlag.IsUpdate,
+          Reseter: HandleReset
+        }}
       />
       <TableElement
         ColumnNames={["Név", "Születés", "Halálozás", "Műveletek"]}
@@ -159,7 +204,7 @@ function App() {
           Delete: DeleteRecord,
           Update: SetUpdateFlag
         }}
-        />
+      />
     </>
   )
 }
