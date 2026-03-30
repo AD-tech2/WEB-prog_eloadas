@@ -16,7 +16,9 @@ const Output = new OutputHandler(
         Delete: (id) => { Output.RemoveRecord(id); Output.Refreash();
                           UpdateTarget.Id = null; UpdateTarget.IsUpdating = false; 
                         },
-        Update: (id) => { UpdateTarget.Id = id; UpdateTarget.IsUpdating = true; Input.LoadInto(Output.GetRecordById(id)); }
+        Update: (id) => { UpdateTarget.Id = id; UpdateTarget.IsUpdating = true;
+                          Input.LoadInto(Output.GetRecordById(id));
+                        }
     },
     document.getElementById("OutputElement")
 );
