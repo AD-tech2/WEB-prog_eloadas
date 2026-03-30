@@ -5,21 +5,43 @@ const Input = new InputHandler({
     Died: "InputDied"
 });
 
+let i = 0;
+const UpdateTarget = {
+    Id: null,
+    IsUpdating: false
+};
+
 const Output = new OutputHandler(
     "Kutatok", {
-        Delete: (id) => { console.log("Delete: "+ id)},
-        Update: (id) => { console.log("Update: " + id)}
+        Delete: (id) => { Output.RemoveRecord(id); Output.Refreash();
+                          UpdateTarget.Id = null; UpdateTarget.IsUpdating = false; 
+                        },
+        Update: (id) => { UpdateTarget.Id = id; UpdateTarget.IsUpdating = true; Input.LoadInto(Output.GetRecordById(id)); }
     },
     document.getElementById("OutputElement")
 );
 
-let i = 0;
-document.getElementById("Submit").addEventListener("click", () => {
-    Output.AddRecord(new Inventor(
+document.getElementById("Submit").addEventListener("click", (event) => {
+    event.preventDefault();
+    if(UpdateTarget.IsUpdating)
+        Output.UpdateRecord(
+            UpdateTarget.Id,
+            Input.ReadInput()
+        );
+    else Output.AddRecord(new Inventor(
         i++,
         "Kutatok",
         Input.ReadInput()
     ));
+    UpdateTarget.Id = null;
+    UpdateTarget.IsUpdating = false;
     Output.Refreash();
+    Input.Clear();
+});
+
+document.getElementById("Reset").addEventListener("click", (event) => {
+    event.preventDefault();
+    UpdateTarget.Id = null;
+    UpdateTarget.IsUpdating = false;
     Input.Clear();
 });

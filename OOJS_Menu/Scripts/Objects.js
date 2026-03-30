@@ -20,6 +20,8 @@ class AbstractRecord {
         return Columns;
     }
     GetRowId() { return this.RowId; }
+    GetData() { return this.Data; }
+    SetData(NewData) { this.Data = NewData; }
 
     /**@private */
     CreateCell(Value) {
@@ -93,7 +95,22 @@ class InputHandler {
     SetInput(ValueToSet) {
         Object.entries(this.Elements).map(([key, elem]) => { document.getElementById(elem).value = ValueToSet; });
     }
+    /**@param {AbstractRecord} Record  */
     Clear() { this.SetInput(""); }
+
+    /**@param {AbstractRecord} Record  */
+    LoadInto(Record) {
+        if(Record === null)
+            throw new Error("The given data is null!");
+        try {
+            const Data = Record.GetData();
+            Object.entries(this.Elements).forEach(([key, elem]) => {
+                document.getElementById(elem).value = Data[key];
+            });
+        } catch(error) {
+            throw new Error("The given Record is not similar with the input elements!");
+        }
+    }
 }
 
 class OutputHandler {
@@ -119,12 +136,38 @@ class OutputHandler {
             this.EventHandlers = EventHandlers;
     }
     
+    GetRecordById(Id) {
+        for(const Record of this.RecordList) {
+            if(Record.GetRowId() === Id)
+                return Record;
+        }
+        return null;
+    }
+
     //Ez legyen az én Record típusomnak megfelelő
     /**@param {AbstractRecord} NewRecord  */
     AddRecord(NewRecord) {
         if(NewRecord.GetTableName() !== this.TableName)
             throw new Error("Cannot load a(n) " + NewRecord.GetTableName() + " type of Record into a " + this.TableName + " table!");
         this.RecordList.push(NewRecord);
+    }
+
+    /**@param {Number} Id  */
+    RemoveRecord(Id) {
+        if(Id === null)
+            throw new Error("Invalid Id given!");
+        this.RecordList = this.RecordList.filter(Record => Record.GetRowId() != Id);
+    }
+    /**@param {Number} Id */
+    UpdateRecord(Id, NewData) {
+        if(Id === null)
+            throw new Error("Invalid Id given!");
+        const Record = this.GetRecordById(Id);
+        if(Record !== null) {
+            Record.SetData(NewData);
+            return;
+        }
+        throw new Error("The specifed index cannot be found in the output element!");
     }
 
     //Csak referencia csere és Count ürítés
@@ -134,7 +177,8 @@ class OutputHandler {
     CreateRefBtn(Id, Name, EventHandler) {
         const Button = document.createElement("button");
         Button.textContent = Name;
-        Button.addEventListener("click", () => EventHandler(Id));
+        if(EventHandler != null)
+            Button.addEventListener("click", () => EventHandler(Id));
         return Button;
     }
 
