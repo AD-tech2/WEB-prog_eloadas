@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="./Scripts/Objects.js"></script>
+        <script src="Scripts/InOutObjects.js"></script>
+        <script src="Scripts/RecordContainer.js"></script>
+        <script src="Scripts/Entities.js"></script>
     </head>
     <body>
         <header>
@@ -24,15 +26,7 @@
                 <button type="submit" id="Submit">Beküld</button>
                 <button type="reset" id="Reset">Visszavon</button>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Név</th>
-                        <th>Születési Dátum</th>
-                        <th>Halálozás dátuma</th>
-                        <th>Műveletek</th>
-                    </tr>
-                </thead>
+            <table id="ObjectTable">
                 <tbody id="OutputElement"></tbody>
             </table>
         </main>

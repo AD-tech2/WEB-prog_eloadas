@@ -5,6 +5,7 @@ const Input = new InputHandler({
     Died: "InputDied"
 });
 
+//Működéshez szükséges globális változók/Flag-ek:
 let i = 0;
 const UpdateTarget = {
     Id: null,
@@ -12,15 +13,23 @@ const UpdateTarget = {
 };
 
 const Output = new OutputHandler(
-    "Kutatok", {
-        Delete: (id) => { Output.RemoveRecord(id); Output.Refreash();
-                          UpdateTarget.Id = null; UpdateTarget.IsUpdating = false; 
+    "Kutatok",
+    {
+        Delete: (id) => { if(!confirm("Are you sure?")) return;
+                          Output.RemoveRecord(id); Output.Refreash();
+                          UpdateTarget.Id = null; UpdateTarget.IsUpdating = false;
                         },
         Update: (id) => { UpdateTarget.Id = id; UpdateTarget.IsUpdating = true;
-                          Input.LoadInto(Output.GetRecordById(id));
+                          Input.LoadIntoInput(Output.GetRecordById(id));
                         }
     },
-    document.getElementById("OutputElement")
+    "OutputElement"
+);
+
+const ObjTable = new ObjectTable(
+    "ObjectTable",
+    ["Név", "Születési Dátum", "Halálozási Dátum"],
+    Output
 );
 
 document.getElementById("Submit").addEventListener("click", (event) => {
