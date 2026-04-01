@@ -25,7 +25,7 @@ class AbstractRecord {
     /**@abstract */
     static GetAttrNames() { }
 
-    /**@private */
+    /**@protected */
     CreateCell(Value) {
         const Cell = document.createElement("td");
         if(Value === null) {
@@ -37,13 +37,18 @@ class AbstractRecord {
     }
 
     //HTML-re alakítás
+    /**@virtual */
     CreateRow() {
-        //Azért teszem ide hogy nelegyen publikus függvény
         const RowElement = document.createElement("tr");
         Object.entries(this.Data).map(([key, value]) => {
             RowElement.appendChild(this.CreateCell(value));
         });
         return RowElement;
+    }
+
+    /**@virtual */
+    ToString() {
+        return "No specific defined!";
     }
 }
 
@@ -72,8 +77,40 @@ class Inventor extends AbstractRecord {
 
     //Művelet függvények:
     CalculateAge() { return this.Data.Died - this.Data.Died; }
-    /** @virtual */
+    /**@override */
     ToString() {
         return "Name: " + this.Data.Name + ", Born: " + this.Data.Born + ", Died: " + this.Data.Died;
+    }
+}
+
+class Invention extends AbstractRecord {
+    constructor(RowId = null, Table = "", InventionDescription = { Name: null }) {
+        //Hiba kezelés:
+        super(RowId, Table);
+        if(InventionDescription === null)
+            throw new Error("Cannot a create invention which has no description");
+        if(InventionDescription.Name === null || InventionDescription.Name === "")
+            throw new Error("The given name is not valid!");
+        this.Data = InventionDescription.Name;
+    }
+
+    //Getter:
+    GetName() { return this.Data.Name; }
+
+    /**@override */
+    static GetAttrNames() {
+        return ["Name"];
+    }
+
+    /**@override */
+    CreateRow() {
+        const RowElement = document.createElement("tr");
+        RowElement.appendChild(this.CreateCell(this.Data));
+        return RowElement;
+    }
+
+    /**@override */
+    ToString() {
+        return "Name: " + this.Data.Name;
     }
 }

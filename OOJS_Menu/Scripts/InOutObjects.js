@@ -24,6 +24,7 @@ class InputHandler {
 
     /**@param {AbstractRecord} Record  */
     LoadIntoInput(Record) {
+        //TODO: Ezt bug fix-elni kell!
         if(Record === null)
             throw new Error("The given data is null!");
         try {

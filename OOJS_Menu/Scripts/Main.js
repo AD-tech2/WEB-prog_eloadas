@@ -1,9 +1,9 @@
 //InputHandler object azér felel hogy az input interakciók egyszerűbbeke legyenek
-const Input = new InputHandler({
+const Input = new InputHandler(/*{
     Name: "InputName",
     Born: "InputBorn",
     Died: "InputDied"
-});
+}*/{ Name: "InputName"});
 
 //Működéshez szükséges globális változók/Flag-ek:
 let i = 0;
@@ -13,7 +13,7 @@ const UpdateTarget = {
 };
 
 const Output = new OutputHandler(
-    "Kutatok",
+    "Talalmanyok",
     {
         Delete: (id) => { if(!confirm("Are you sure?")) return;
                           Output.RemoveRecord(id); Output.Refreash();
@@ -28,7 +28,7 @@ const Output = new OutputHandler(
 
 const ObjTable = new ObjectTable(
     "ObjectTable",
-    ["Név", "Születési Dátum", "Halálozási Dátum"],
+    ["Név", "Műveletek"],//["Név", "Születési Dátum", "Halálozási Dátum", "Műveletek"],
     Output
 );
 
@@ -39,9 +39,9 @@ document.getElementById("Submit").addEventListener("click", (event) => {
             UpdateTarget.Id,
             Input.ReadInput()
         );
-    else Output.AddRecord(new Inventor(
+    else Output.AddRecord(new Invention(
         i++,
-        "Kutatok",
+        "Talalmanyok",
         Input.ReadInput()
     ));
     UpdateTarget.Id = null;

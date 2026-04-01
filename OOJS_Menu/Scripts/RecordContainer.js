@@ -5,6 +5,7 @@ class ObjectTable {
     TableHead = null;
     /** @protected @type {OutputHandler}*/
     Output = null;
+
     /** @param {String} RefName @param {String[]} ColumnList  @param {OutputHandler} ConfigedOutput */
     constructor(RefName, ColumnList, ConfigedOutput) {
         if(RefName === "" || RefName === null)
@@ -23,6 +24,10 @@ class ObjectTable {
             throw new Error("The Output is not configured properly!");
         }
     }
+
+    //Getterek:
+    GetTable() { return this.TableRef; }
+    GetOutput() { return this.Output; }
 
     /**@private */
     CreateThead() {
