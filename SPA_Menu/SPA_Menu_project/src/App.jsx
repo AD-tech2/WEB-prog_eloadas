@@ -1,14 +1,15 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Index from './Index';
-import CurrencyExchanger from './currancy_exchanger/Currency_main';
+import MemoryGameApp from './MemoryGame/MemoryGame';
+import PaintApp from './PaintingApp/PaintingApp';
 
 function App() {
   return (
     <>
       <Routes>
-          <Route path='/' element={<Index/>}/>
-          <Route path='CurrencyExchanger' element={<CurrencyExchanger/>}/>
-          <Route path='/RockPaperScissor' element={<label>Kőpapírolló</label>}/>
+          <Route path='/index.html' element={<Index/>}/>
+          <Route path='/MemmoryGame' element={<MemoryGameApp/>}/>
+          <Route path='/PaintingApp' element={<PaintApp/>}/>
       </Routes>
     </>
   );
