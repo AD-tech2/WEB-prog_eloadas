@@ -7,7 +7,7 @@ function Record({Attributes = {fkod: null, name: "", born: 0, died: 0}, HandlerC
             {Object.entries(Attributes).map(([key, value], num)=> {
                 //Ide kell az ID amit takarni akarunk
                 if(key !== "fkod") return (
-                    <td key={num}>{value}</td>
+                    <td key={num}>{value ?? "(null)"}</td>
                 );
             })}
             <td>

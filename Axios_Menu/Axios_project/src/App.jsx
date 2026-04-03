@@ -13,6 +13,7 @@ function App() {
     Born: useRef(null),
     Died: useRef(null)
   };
+  const Api = "./PHP/HandleRequest.php";
   //Adatok egy ref-ben:
   const RecordList = useRef([]);
   const GetRecordList = () => RecordList.current;
@@ -32,7 +33,7 @@ function App() {
 
   //Kezelő metódusok:
   const LoadRecords = async () => {
-    const Data = await ReadInventors("http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php");
+    const Data = await ReadInventors(Api);
     if(Data === null || Data.Fail) {
       SetError({
         Flag: true,
@@ -63,7 +64,7 @@ function App() {
       });
       return;
     }
-    const Data = await ReadSpecificInventor("http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php", Specification);
+    const Data = await ReadSpecificInventor(Api, Specification);
     if(Data === null || Data.Fail) {
       SetError({
         Flag: true,
@@ -140,14 +141,14 @@ function App() {
   const HandleSave = () => {
     //Ha update esemény van jelen akkor kerül ide a vezérlés:
     if(UpdateFlag.IsUpdate) {
-      UpdateRecord("http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php", UpdateFlag.Id, ReadUserInput(InputRefs));
+      UpdateRecord(Api, UpdateFlag.Id, ReadUserInput(InputRefs));
       SetUpdateFlag({
         IsUpdate: false,
         Id: null
       });
     }
     //Ha nem Update esemény kell akkor új elemet veszünk fel:
-    else CreateRecord("http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php", ReadUserInput(InputRefs));
+    else CreateRecord(Api, ReadUserInput(InputRefs));
     //Ref-ek nullázása:
     Object.entries(InputRefs).map(([key, inputs]) => { inputs.current.value = ""; });
   }
@@ -161,7 +162,9 @@ function App() {
   }
 
   //Default load események:
-  useEffect(() => LoadRecords, [UpdateFlag]);
+  useEffect(() => { LoadRecords(); }, []);
+
+  useEffect(() => { LoadRecords(); }, [UpdateFlag]);
 
   useEffect(() => {
     if(!Error.Flag)//Ha sikeres a betöltés ürítjük a memóriát!
@@ -178,14 +181,13 @@ function App() {
         </h3>
       }
       <SearchBar
-        Label="SearchBar"
         OptionsToSearch={["nev", "születési dátum", "halálozási dátum"]}
         OnSearch={LoadSpecRecords}
         OnNullSearch={LoadRecords}
       />
       <FormElement
         ListOfInputConfs={[
-          {label: "Név*", type: "text", holder: "Pl.: Makai Andor", ref: InputRefs.Name, notnull: true},
+          {label: "Név*", type: "text", holder: "Pl.: Kiss János", ref: InputRefs.Name, notnull: true},
           {label: "Születés*", type: "number", holder: "Pl.: 1995", ref: InputRefs.Born, notnull: true},
           {label: "Halálozás", type: "number", holder: "Pl.: 2020", ref: InputRefs.Died}
         ]}
@@ -199,7 +201,7 @@ function App() {
         ColumnNames={["Név", "Születés", "Halálozás", "Műveletek"]}
         Records={GetRecordList()}
         HandlerCollection={{
-          Handler: "http://localhost/PHPGyakorlas/Axios_Menu/HandleRequest.php",
+          Handler: Api,
           Refs: InputRefs,
           Delete: DeleteRecord,
           Update: SetUpdateFlag

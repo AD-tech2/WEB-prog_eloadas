@@ -41,7 +41,7 @@ export default function SearchBar({ Label = "", OptionsToSearch = [], Dynamic = 
     const GetSearch = () => InputToSearch.current;
     const SetSearch = (NewInput) => { InputToSearch.current = NewInput; };
     return (
-        <>
+        <div className="SearchBar">
             {(Label !== null && Label != "") && <h4>{Label}</h4>}
             { Dynamic &&
                 <DynamicInput
@@ -72,6 +72,6 @@ export default function SearchBar({ Label = "", OptionsToSearch = [], Dynamic = 
                     else OnNullSearch();
                 }}>Search</button>
             }
-        </>
+        </div>
     );
 }

@@ -11,12 +11,13 @@
 
     function CreateInventor($NewInventor) {
         global $DatabaseAPI;
+        //file_put_contents(__DIR__."/debug.log", "CREATE: ".print_r(empty($NewInventor["Died"]) ? null : $NewInventor["Died"], true)."\n", FILE_APPEND);
         try {
             $SQLstmnt = $DatabaseAPI->prepare("INSERT INTO kutato(nev, szul, meghal) VALUES (?,?,?)");
             $SQLstmnt->execute([
                 $NewInventor["Name"],
                 $NewInventor["Born"],
-                $NewInventor["Died"]
+                empty($NewInventor["Died"]) ? null : $NewInventor["Died"]
             ]);
         } catch(Exception $e) {
             throw new Exception($e->getMessage());
@@ -30,7 +31,7 @@
             $SQLstmnt->execute([
                 $NewAttributes["Name"],
                 $NewAttributes["Born"],
-                $NewAttributes["Died"],
+                empty($NewAttributes["Died"]) ? null : $NewAttributes["Died"],
                 $Id
             ]);
         } catch(Exception $e) {
@@ -83,7 +84,6 @@
         case "PUT":
             try {
                 $Data = json_decode(file_get_contents("php://input"), true);
-                file_put_contents(__DIR__."/debug.log", "PUT: ".print_r($Data, true)."\n", FILE_APPEND);
                 UpdateInventor($Data["Id"], $Data["ToThis"]);
                 echo json_encode([
                     "Fail" => false
@@ -97,7 +97,6 @@
         case "DELETE":
             try {
                 $Data = json_decode(file_get_contents("php://input"), true);
-                file_put_contents(__DIR__."/debug.log", "DELETE: ".print_r($Data, true)."\n", FILE_APPEND);
                 DeleteInventor($Data);
                 echo json_encode([
                     "Fail" => false

@@ -146,3 +146,29 @@ table tr td:last-child button:nth-child(1) {
 table button:hover {
   opacity: 0.8;
 }
+
+.SearchBar {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+}
+
+.SearchBar select {
+  padding: 12px;
+  margin: 8px 0 20px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #fff;
+  transition: border 0.3s;
+  cursor: pointer;
+  color: #555;
+}
+
+.SearchBar select:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}

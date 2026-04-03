@@ -7,7 +7,7 @@ const OutputElement = document.getElementById("OutputArea");//= a tbody elemmel
 const ResponsElement = document.getElementById("ResponsArea");//= ide jönnek az üzenetek a fetch-ből!
 const SaveButton = document.getElementById("SaveButton");//form-nak a submit gombja
 const ResetButton = document.getElementById("ResetButton");
-const ServerApi = "HandleRequest.php";
+const ServerApi = "./PHP/HandleRequest.php";
 
 //================================== Fetch rendszer ========================================
 

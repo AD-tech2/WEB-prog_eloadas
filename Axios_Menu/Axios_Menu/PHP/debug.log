@@ -1,0 +1,92 @@
+
+Natural GET
+SpecGET: Array
+(
+    [Column] => nev
+    [Value] => Makai
+)
+
+Natural GET
+SpecGET: Array
+(
+    [Column] => nev
+    [Value] => Makai
+)
+
+Natural GET
+SpecGET: Array
+(
+    [Column] => nev
+    [Value] => Makai
+)
+
+Natural GET
+SpecGET: Array
+(
+    [Column] => nev
+    [Value] => Makai
+)
+
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE ?
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+Natural GET
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Andor
+SpecGET: SELECT * FROM kutato WHERE nev LIKE a
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Koszna
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Cili
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE halálozási dátum LIKE 1932
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Andor
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE nev
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+SpecGET: SELECT * FROM kutato WHERE nev LIKE 1900
+Natural GET
+SpecGET: SELECT * FROM kutato WHERE nev LIKE Makai
+SpecGET: SELECT * FROM kutato WHERE nev LIKE 1900
+SpecGET: SELECT * FROM kutato WHERE születési dátum LIKE 1900
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
+Natural GET
