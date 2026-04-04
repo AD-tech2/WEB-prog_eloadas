@@ -125,7 +125,6 @@ function DeleteRecord(Index) {
         return;
     }
     RecordList.splice(Index, 1);
-    console.log("Eddig jo");
     ReadRecords();
 }
 //Update-elés user inputból:
