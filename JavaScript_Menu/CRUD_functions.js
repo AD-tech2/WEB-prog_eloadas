@@ -141,7 +141,8 @@ function UpdateRecord(Index) {
 }
 
 //Ez ugye ami beküldi az adatokat:
-FormElements.SubmitButton.addEventListener("click", () => {
+FormElements.SubmitButton.addEventListener("click", (e) => {
+    e.preventDefault();
     //Eldönétse hogy milyen fajta interakció volt:
     if(SelectedState.Index === null) CreateRecord();
     else if(SelectedState.EditMode) {
