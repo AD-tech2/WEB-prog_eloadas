@@ -8,5 +8,12 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
-  base: "/React_Menu"
+  build: {
+    rolldownOptions: {
+      input: {
+        react: 'react.html'
+      }
+    }
+  },
+  base: "/React_Menu/"
 })

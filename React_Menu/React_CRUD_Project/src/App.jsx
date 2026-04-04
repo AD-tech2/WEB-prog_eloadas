@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { InputElement, DefineColumns, DefineOutput } from './Elements'
+import "./style.css";
 
 function App() {
   //Referencia a bementre(Ha bővíteni kell akkor ide kell majd új referencia!):
@@ -49,6 +50,8 @@ function App() {
   function DeleteRecord(Id) {
     if(confirm("Are you sure?"))
       setRecords(Records.filter(r => r.Id !== Id));//Minden más kivéve az Id megtartása
+    //Az adatok törlése az input mezőkből és Visszaállítás megvalósítása a HandleReset-el
+    HandleReset();
   }
   function UpdateRecord(Id) {
     setRecords(Records.map((r) => {
@@ -73,9 +76,24 @@ function App() {
     BornRef.current.value = "";
     DiedRef.current.value = "";
   }
+  
+  function HandleReset() {
+    NameRef.current.value = "";
+    BornRef.current.value = "";
+    DiedRef.current.value = "";
+    setUpdater({
+      Id: null,
+      State: false,
+      RefList: [NameRef, BornRef, DiedRef]
+    });
+  }
 
   return (
     <>
+      <h1>React CRUD</h1>
+      { Updater.State &&
+        <h2>Updating</h2>
+      }
       <form onSubmit={(e) => {e.preventDefault()}}>
         <InputElement InputElements={[
           {id: 1, text: "Teljes név", inputType: "text", ref: NameRef},
@@ -84,7 +102,9 @@ function App() {
         ]}/>
         <br/>
         <button type="submit" onClick={HandleSubmit}>Send</button>
-        <button type="reset">Reset</button>
+        { Updater.State &&
+          <button type="reset" onClick={HandleReset}>Reset</button>
+        }
       </form>
       <table>
         <DefineColumns Columns={[
