@@ -139,7 +139,6 @@ function DeleteInventor(Id) {
 }
 
 function UpdateInventor(Id) {
-    //JSON formátumba hogy milyen id-t és mire kell update-elni a szervernek:
     const UpdateToThis = {
         Id: Id,
         ToThis: ReadUserInput()
