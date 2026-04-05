@@ -117,7 +117,6 @@ function CreateInventor(Record = {Name: "", Born: 0, Died: 0}) {
 
 function DeleteInventor(Id) {
     if(!confirm("Are you sure you want to delete this inventor?")) return;
-    console.log(Id);
     fetch(ServerApi, {
         method: "DELETE",
         headers: {"Content-Type": "application/json"},
