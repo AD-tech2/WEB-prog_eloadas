@@ -41,7 +41,9 @@ class AbstractRecord {
     CreateRow() {
         const RowElement = document.createElement("tr");
         Object.entries(this.Data).map(([key, value]) => {
-            RowElement.appendChild(this.CreateCell(value));
+            if(value === "" || value === null)
+                RowElement.appendChild(this.CreateCell("(null)"));
+            else RowElement.appendChild(this.CreateCell(value));
         });
         return RowElement;
     }
