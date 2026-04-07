@@ -1,41 +1,83 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
 </head>
-    <body>
-        <nav>
-            <h2>Webprogramozás Beadandók</h2>
 
-            <ul class="topmenu">
-                <li>
-                    Előadás
-                    <ul class="submenu">
-                        <li><a href="">Menu</a></li>
-                        <li><a href="">JavaScript</a></li>
-                        <li><a href="">React</a></li>
-                        <li><a href="">SPA</a></li>
-                        <li><a href="">FetchAPI</a></li>
-                        <li><a href="">Axios</a></li>
-                        <li><a href="">OOJS</a></li>
-                    </ul>
-                </li>
-                <li>
-                    Gyakorlat
-                    <ul class="submenu">
-                        <li><a href="">Átirányítás</a></li>
-                    </ul>
-                </li>
+<body>
+    <nav>
+        <h2>Webprogramozás Beadandók</h2>
+
+        <ul class="topmenu">
+            <li>
+                Előadás
+                <ul class="submenu">
+                    <li><a href="">Menu</a></li>
+                    <li><a href="">JavaScript</a></li>
+                    <li><a href="">React</a></li>
+                    <li><a href="">SPA</a></li>
+                    <li><a href="">FetchAPI</a></li>
+                    <li><a href="">Axios</a></li>
+                    <li><a href="">OOJS</a></li>
+                </ul>
+            </li>
+            <li>
+                Gyakorlat
+                <ul class="submenu">
+                    <li><a href="">Átirányítás</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- 1. Szekció: Üdvözlés és Projekt célja -->
+        <section class="intro">
+            <h2>Projekt Áttekintés</h2>
+            <p>Ez a webalkalmazás a <strong>Web programozás-1</strong> előadás keretében készült átfogó projektmunka.
+                Célja a modern webes technológiák (JavaScript, React, API kezelés) gyakorlati alkalmazásának bemutatása
+                egy egységes keretrendszerben.</p>
+        </section>
+
+        <!-- 2. Szekció: Alkalmazott technológiák (látványos kártyák) -->
+        <section class="tech-stack">
+            <h3>Felhasznált Technológiák</h3>
+            <div class="card-container">
+                <div class="card">
+                    <i class="icon">JS</i>
+                    <h4>Vanilla JavaScript</h4>
+                    <p>Alapvető CRUD műveletek és objektumorientált (OOJS) grafikus megoldások.</p>
+                </div>
+                <div class="card">
+                    <i class="icon">RE</i>
+                    <h4>React & Axios</h4>
+                    <p>Modern komponensalapú UI fejlesztés, állapotkezelés (useState) és szerver oldali adatlekérés.</p>
+                </div>
+                <div class="card">
+                    <i class="icon">API</i>
+                    <h4>Fetch & Axios</h4>
+                    <p>Szerveroldali adatbázis kapcsolat (PHP/MySQL) aszinkron hívásokon keresztül.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Szekció: Rövid útmutató a menühöz -->
+        <section class="navigation-guide">
+            <h3>Hogyan böngésszen a feladatok között?</h3>
+            <ul>
+                <li><strong>JavaScript:</strong> Tömbalapú CRUD alkalmazás megtekintése.</li>
+                <li><strong>React/SPA:</strong> Modern egyoldalas alkalmazások és játékok kipróbálása.</li>
+                <li><strong>Adatbázis:</strong> Fetch API és Axios alapú éles adatkezelés szerver kapcsolattal.</li>
+                <li><strong>OOJS:</strong> Grafikus, osztályalapú vizuális alkalmazás.</li>
             </ul>
-        </nav>
+        </section>
+    </main>
 
-        <main>
-            Ez a kezdő oldala a beadandók kezeléléhez készült itt megtalálhatóak mind az előadás feladatok mind a gyakolati feladat átirányítási lehetősége.
-        </main>
+    <footer>
+        Készítették: Pálmai Ádám (YB5SIV) és Debreczeni Ákos (HWF5W0)
+    </footer>
+</body>
 
-        <footer>
-            Készítették: Pálmai Ádám (YB5SIV) és Debreczeni Ákos (HWF5W0)
-        </footer>
-    </body>
 </html>

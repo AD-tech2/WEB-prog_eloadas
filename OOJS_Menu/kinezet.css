@@ -1,76 +1,161 @@
+/* Alapbeállítások és színek */
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f39c12;
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --white: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    background-color: #f9f9f9;
 }
 
-header,
-main,
-footer {
+/* Header stílus */
+header {
+    background-color: var(--primary-color);
+    color: var(--white);
     width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+/* Fő tartalom elrendezése */
+main {
+    width: 90%;
     max-width: 800px;
-    background: white;
-    padding: 20px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
 }
 
-header,
-footer {
-    text-align: center;
+/* Form / Input mezők stílusa */
+main > div {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
 }
 
+h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 10px;
+}
+
+label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box; /* Hogy ne lógjon ki */
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Gombok stílusa */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.1s, opacity 0.3s;
+    margin-right: 10px;
+}
+
+#Submit {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#Reset {
+    background-color: #e74c3c;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Táblázat stílusa */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden; /* Lekerekített sarkok miatt */
+    box-shadow: var(--shadow);
+    margin-bottom: 50px;
 }
 
 th {
-    background-color: #eee;
+    background-color: #34495e;
+    color: var(--white);
+    padding: 15px;
+    text-align: left;
 }
 
-.form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
 }
 
-.form-group {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+tr:hover {
+    background-color: #f9f9f9;
 }
 
-input[type="text"] {
-    padding: 8px;
-    flex: 1;
-    min-width: 200px;
+/* Footer stílus */
+footer {
+    margin-top: auto;
+    padding: 20px;
+    background-color: #34495e;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
 }
 
-input[type="number"] {
-    padding: 8px;
-    flex: 1;
-    min-width: 200px;
-}
-
-button {
-    padding: 8px 15px;
-    cursor: pointer;
+/* Reszponzivitás mobilra */
+@media (max-width: 600px) {
+    main {
+        width: 95%;
+    }
+    
+    header h1 {
+        font-size: 1.4rem;
+    }
 }
