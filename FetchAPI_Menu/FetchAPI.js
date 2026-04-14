@@ -30,6 +30,7 @@ function CreateCell(Data = null) {
     const NewCell = document.createElement("td");
     if(Data === "" || Data === null) NewCell.textContent = "(null)";
     else NewCell.textContent = Data;
+    NewCell.className = "crud";
     return NewCell;
 }
 
@@ -37,6 +38,7 @@ function CreateButtonRef(Record = null, IsEditBt = false) {
     if(Record === null)
         throw new Error("Cannot create reffrence button without a refferenc (id).");
     const Button = document.createElement("button");
+    Button.className = "crud";
     if(IsEditBt) {
         Button.textContent = "Change";
         Button.addEventListener("click", () => {
@@ -70,6 +72,7 @@ function CreateRow(Record = null) {
     ButtonsCell.appendChild(CreateButtonRef(Record, true));//= Update button
     ButtonsCell.appendChild(CreateButtonRef(Record));//= Delete button
     NewRow.appendChild(ButtonsCell);
+    NewRow.className = "crud";
     return NewRow;
 }
 
@@ -85,11 +88,11 @@ function ReadInventors() {
             //Adatok betöltése:
             OutputElement.innerHTML = "";
             Payload.Records.forEach(Record => {OutputElement.appendChild(CreateRow(Record));});
-            ResponsElement.innerHTML = "<br>The inventors are succesfully loaded!";
+            ResponsElement.innerHTML += "The inventors are succesfully loaded!<br>";
         }
     })
     .catch(Err => {
-        ResponsElement.innerHTML += "<br>Error: Cannot load the inventors!";
+        ResponsElement.innerHTML += "Error: Cannot load the inventors!<br>";
         console.log("Read: " + Err.message);
     });
 }
@@ -105,12 +108,12 @@ function CreateInventor(Record = {Name: "", Born: 0, Died: 0}) {
         if(Payload.Fail)
             throw new Error("Cannot save Inventor!");
         else {
-            ResponsElement.innerHTML += "The new inventor is succesfully saved!";
+            ResponsElement.innerHTML += "The new inventor is succesfully saved!<br>";
             ReadInventors();
         }
     })
     .catch(Err => {
-        ResponsElement.innerHTML = "Error: Cannot save the new inventor!";
+        ResponsElement.innerHTML = "Error: Cannot save the new inventor!<br>";
         console.log("Create: " + Err.message);
     });
 }
@@ -127,14 +130,15 @@ function DeleteInventor(Id) {
         if(Payload.Fail)
             throw new Error("Cannot delete the selected record!");
         else {
-            ResponsElement.innerHTML += "The selected inventor is succesfully deleted!";
+            ResponsElement.innerHTML += "The selected inventor is succesfully deleted!<br>";
             ReadInventors();
         }
     })
     .catch(Err => {
-        ResponsElement.innerHTML = "Error: Cannot delete the selected inventor!";
+        ResponsElement.innerHTML = "Error: Cannot delete the selected inventor!<br>";
         console.log("Delete: " + Err.message);
     });
+    ResponsElement.innerHTML = "";
 }
 
 function UpdateInventor(Id) {
@@ -152,12 +156,12 @@ function UpdateInventor(Id) {
         if(Payload.Fail)
             throw new Error("Cannot update the selected record!");
         else {
-            ResponsElement.innerHTML += "The selected inventor is succesfully updated!";
+            ResponsElement.innerHTML += "The selected inventor is succesfully updated!<br>";
             ReadInventors();
         }
     })
     .catch(Err => {
-        ResponsElement.innerHTML = "Error: Cannot update the selected inventor!";
+        ResponsElement.innerHTML = "Error: Cannot update the selected inventor!<br>";
         console.log("Update: " + Err.message);
     });
 }
@@ -166,48 +170,24 @@ function UpdateInventor(Id) {
 //Vezérlő gomb amivel interaktálunk a szerver fele:
 SaveButton.addEventListener("click", (e) => {
     e.preventDefault();
-    
-    // 1. Alapstílus beállítása (láthatóvá tétel)
+
     ResponsElement.style.display = "block";
     ResponsElement.style.padding = "15px";
     ResponsElement.style.marginBottom = "20px";
     ResponsElement.style.borderRadius = "5px";
 
-    // 2. Művelet elindítása
     if(SelectedInventor.isEdit)
         UpdateInventor(SelectedInventor.Id);
     else 
         CreateInventor(ReadUserInput());
 
-    // 3. Egy kis "időzített bomba" a stílushoz:
-    // Megvárjuk, amíg a fetch beleírja az üzenetet, és aszerint színezzük
-    setTimeout(() => {
-        const text = ResponsElement.innerText.toLowerCase();
-        
-        if (text.includes("error") || text.includes("cannot")) {
-            // PIROS, ha hiba van
-            ResponsElement.style.backgroundColor = "#f8d7da";
-            ResponsElement.style.color = "#721c24";
-            ResponsElement.style.border = "1px solid #f5c6cb";
-        } else {
-            // ZÖLD, ha sikeres
-            ResponsElement.style.backgroundColor = "#d4edda";
-            ResponsElement.style.color = "#155724";
-            ResponsElement.style.border = "1px solid #c3e6cb";
-        }
-
-        // 4. Eltüntetés 3 másodperc múlva
-        setTimeout(() => {
-            ResponsElement.style.display = "none";
-            ResponsElement.innerHTML = "";
-        }, 3000);
-
-    }, 100); // 100ms várakozás, hogy a fetch válasza biztosan megérkezzen az innerHTML-be
-
     // Input elemek nullázása:
     Object.entries(InputElements).forEach(([key, elem]) => elem.value = "");
     SelectedInventor.Id = null;
     SelectedInventor.isEdit = false;
+
+    //Vissza jelzés ürítése
+    ResponsElement.innerHTML = "";
 });
 
 
